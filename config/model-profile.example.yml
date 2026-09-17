@@ -1,0 +1,38 @@
+# Portable model mapping only. This file contains no account, token, or provider state.
+# Copy the values you support into your OMP configuration deliberately; the installer
+# keeps this profile separate rather than making a fragile YAML merge into config.yml.
+modelRoles:
+  default: google-antigravity/claude-sonnet-4-6
+  tiny: google-antigravity/gemini-3.5-flash-lite
+  smol: google-antigravity/gemini-3.5-flash-lite
+  task: google-antigravity/gemini-3.8-flash
+  plan: openai-codex/gpt-5.6-sol:high
+  slow: openai-codex/gpt-5.6-sol:high
+  designer: google-antigravity/claude-sonnet-4-6
+  vision: google-antigravity/gemini-3.8-flash
+  review: openai-codex/gpt-5.6-sol:medium
+  # Advisor is intentionally not part of normal routing.
+  advisor: disabled
+  commit: google-antigravity/gemini-3.5-flash-lite
+
+defaultThinkingLevel: auto
+
+retry:
+  enabled: true
+  modelFallback: true
+  fallbackRevertPolicy: cooldown-expiry
+  fallbackChains:
+    # Only the main coordinator falls back to Gemini 3.8 Flash High.
+    default:
+      - google-antigravity/gemini-3.8-flash:high
+    # Empty role chains deliberately prevent silent inheritance/downgrade.
+    task: []
+    plan: []
+    slow: []
+    review: []
+    advisor: []
+    designer: []
+    vision: []
+    tiny: []
+    smol: []
+    commit: []

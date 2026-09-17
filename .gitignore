@@ -1,0 +1,37 @@
+# Secrets, authentication, and local OMP state
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.p12
+*.pfx
+*token*
+*secret*
+*credential*
+*cookie*
+*session*
+auth/
+credentials/
+
+# OMP runtime state (never package a local installation)
+.omp/
+agent.db*
+history.db*
+models.db*
+stats.db*
+cache/
+logs/
+terminal-sessions/
+backups/
+
+# Editor, OS, and temporary files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.tmp
+*.bak
+*.log
+work/
