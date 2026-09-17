@@ -1,10 +1,32 @@
 # OMP Adaptive Workflow
 
-> A portable, version-controlled Oh My Pi workflow that separates project knowledge, AI-led routing, specialist execution, and mechanical enforcement.
+[![Platform: Linux, Windows, WSL](https://img.shields.io/badge/platform-Linux%20%7C%20Windows%20%7C%20WSL-2ea44f)](https://github.com/Mo999salah/omp-adaptive-workflow)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Workflow: Dynamic routing](https://img.shields.io/badge/workflow-dynamic%20routing-7c3aed)](global/AGENTS.md)
 
-Most agent setups either hard-code a workflow or leave every decision to an unstructured conversation. OMP Adaptive Workflow keeps the useful middle: a semantic coordinator chooses the smallest capable lane from live evidence, focused agents do the work, and a tiny guard protects only orchestration invariants.
+> A portable, version-controlled Oh My Pi workflow for developers who want disciplined multi-agent work without baking semantic decisions into scripts.
 
-It is a reusable developer tool—not a dotfile dump. It ships no credentials, accounts, sessions, databases, logs, caches, or local-project knowledge.
+**OMP Adaptive Workflow** turns a working Oh My Pi setup into a small, auditable distribution you can install on another machine, share with a team, and update with `git pull`. It keeps four responsibilities deliberately separate:
+
+- **Project knowledge** stays local to each repository.
+- **Semantic routing** remains an AI reasoning task.
+- **Specialist agents** plan, implement, design, and review.
+- **Mechanical enforcement** protects workflow invariants without pretending to understand the task.
+
+Most agent setups choose one of two extremes: a rigid rules engine full of brittle keywords, or an unstructured conversation with no safeguards. This project takes the practical middle path. A coordinator reads the request and live repository evidence, selects the smallest capable lane, and hands concise contracts to specialists. A tiny guard then enforces only the lifecycle rules that must never be skipped.
+
+It is a reusable developer tool—not a dotfile dump. It contains no credentials, accounts, provider state, sessions, databases, logs, caches, or local-project knowledge.
+
+## At a glance
+
+| You need to… | This repository provides… |
+| --- | --- |
+| Reproduce a workflow on Linux, Windows, or WSL | Small Bash and PowerShell installers |
+| Keep project facts out of global tooling | A project-local knowledge-profile template |
+| Avoid hard-coded “if keyword, then agent” rules | Coordinator guidance for evidence-led semantic routing |
+| Protect planner-led work from skipped review | A minimal, domain-agnostic orchestration guard |
+| Change model providers without changing workflow behavior | An editable, credential-free model profile |
+| Update safely | Per-file timestamped backups and repeatable installation |
 
 ## The four layers
 
@@ -86,6 +108,8 @@ cd omp-adaptive-workflow
 ```
 
 By default the installers target `~/.omp/agent` (Linux/WSL) or the equivalent `$HOME\.omp\agent` (Windows). To install into a supported alternate OMP location, set `OMP_AGENT_DIR` before running a script.
+
+> **First install?** Complete your normal OMP/provider authentication independently. This repository never imports or changes credentials.
 
 ## Installation behavior
 
@@ -177,6 +201,8 @@ On Windows, run `git pull` then `.\scripts\install.ps1`. For manual rollback, co
 
 Share the Git repository, not a populated `~/.omp` directory. Each developer installs it into their own OMP environment, authenticates their own providers, chooses their own model mapping, and keeps project knowledge within each project. The included `.gitignore` rejects common secrets and runtime state; still run the audit below before publishing.
 
+Before opening a pull request or sharing a fork, run the local verification command and inspect `git status`. A workflow distribution should be easy to audit: all behavior belongs in the tracked files shown below, while all personal OMP state remains outside the repository.
+
 ## Screenshots and images
 
 The README works without screenshots. Add real images—not fabricated UI captures—under `docs/images/` using these names if useful:
@@ -211,3 +237,7 @@ omp-adaptive-workflow/
 - The PowerShell scripts are statically portable here; run them on Windows to validate against the target OMP install.
 
 The outcome is a small, auditable workflow distribution that can move between machines without exporting personal OMP state.
+
+## Contributing
+
+Keep changes narrow and portable. Do not add credentials, machine-specific paths, local OMP runtime state, or semantic keyword routing to the guard. If a change affects an installer, keep the Bash and PowerShell behavior aligned and update the README when user-visible behavior changes.
